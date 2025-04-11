@@ -6,6 +6,9 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     zip \
     git \
+    nginx \
+    libzip-dev \
+    libxml2-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -14,10 +17,20 @@ COPY . /var/www
 
 WORKDIR /var/www
 
-RUN composer install --no-dev --optimize-autoloader
+RUN cp .env.example .env
+
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
 RUN php artisan config:clear
 
-EXPOSE 8000
+COPY ./docker/nginx/laravel.conf /etc/nginx/sites-available/laravel
+RUN ln -s /etc/nginx/sites-available/laravel /etc/nginx/sites-enabled/
 
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+EXPOSE 80
+
+COPY ./docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["nginx", "-g", "daemon off;"]
