@@ -9,6 +9,9 @@ RUN apt-get update && apt-get install -y \
     nginx \
     libzip-dev \
     libxml2-dev \
+    libicu-dev \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install pdo pdo_mysql mbstring exif bcmath ctype intl \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -19,6 +22,7 @@ WORKDIR /var/www
 
 RUN cp .env.example .env
 
+RUN composer clear-cache
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
 RUN php artisan config:clear
