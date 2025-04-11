@@ -84,5 +84,5 @@ To run this project locally, make sure the following tools are installed:
 
 - /routes/api.php – API routes
 
--S /database/migrations – Database migration files
+- /database/migrations – Database migration files
 
