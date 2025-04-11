@@ -37,7 +37,7 @@ To run this project locally, make sure the following tools are installed:
    ```bash
    git clone https://github.com/rolandiartmeladze/my-blog-backend.git
    cd my-blog-backend
-```
+    ```
 
 2. **Install composer**
     ```bash
@@ -47,5 +47,5 @@ To run this project locally, make sure the following tools are installed:
 3.  **Set .env local config**
     ```bash
     cp .env.example .env
-    
+
     ```
