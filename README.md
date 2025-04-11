@@ -70,3 +70,18 @@ To run this project locally, make sure the following tools are installed:
     ```bash
     php artisan serve
      ```
+
+
+## ⚙️ Project Structure
+
+📁 Folder Structure
+    -[] /app – Core application files (models, controllers)
+
+    -[] /resources/views – Blade templates
+
+    -[] /routes/web.php – Web routes
+
+    -[] /routes/api.php – API routes
+
+    -[] /database/migrations – Database migration files
+
