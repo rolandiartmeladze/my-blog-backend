@@ -75,6 +75,7 @@ To run this project locally, make sure the following tools are installed:
 ## ⚙️ Project Structure
 
 📁 Folder Structure
+
     -[] /app – Core application files (models, controllers)
 
     -[] /resources/views – Blade templates
