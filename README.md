@@ -49,5 +49,24 @@ To run this project locally, make sure the following tools are installed:
 3.  **Set .env local config**
     ```bash
     cp .env.example .env
-
     ```
+---
+
+4.  **key:generate generate app key**
+    ```bash
+    php artisan key:generate
+     ```
+
+---
+
+5. **run migrations**
+    ```bash
+    php artisan migrate
+     ```
+
+---
+
+6. **Serve this aplication**
+    ```bash
+    php artisan serve
+     ```
