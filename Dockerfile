@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM php:8.2-fpm
 
 RUN apt-get update && apt-get install -y \
     libpng-dev \
@@ -10,8 +10,9 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libxml2-dev \
     libicu-dev \
-    libonig-dev \
-    && docker-php-ext-configure intl \
+    oniguruma-dev
+
+RUN docker-php-ext-configure intl \
     && docker-php-ext-install pdo pdo_mysql mbstring exif bcmath ctype intl \
     && rm -rf /var/lib/apt/lists/*
 
@@ -20,22 +21,13 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY . /var/www
 
 WORKDIR /var/www
-
-RUN cp .env.example .env
-
-RUN composer clear-cache
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
-
-RUN php artisan config:clear
 
 COPY ./docker/nginx/laravel.conf /etc/nginx/sites-available/laravel
 RUN ln -s /etc/nginx/sites-available/laravel /etc/nginx/sites-enabled/
 
+RUN php artisan key:generate
+RUN php artisan config:clear
+
 EXPOSE 80
-
-COPY ./docker/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["php-fpm"]
