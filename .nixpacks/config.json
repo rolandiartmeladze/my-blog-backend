@@ -1,25 +1,19 @@
 {
   "phases": {
     "setup": {
-      "nixPkgs": [
-        "php",
-        "phpPackages.composer",
-        "nginx",
-        "mysql"
-      ]
+      "nixPkgs": ["php", "phpPackages.composer", "nginx", "mysql", "sqlite"]
     },
     "install": {
       "cmds": [
-  "cp .env.example .env",
-  "touch database/database.sqlite",
-  "composer install --ignore-platform-reqs",
-  "php artisan key:generate",
-  "php artisan migrate"
-]
-
+        "cp .env.example .env",
+        "touch database/database.sqlite",
+        "composer install --ignore-platform-reqs",
+        "php artisan key:generate",
+        "php artisan migrate"
+      ]
     },
     "start": {
-      "cmd": "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000"
+      "cmd": "php artisan serve --host=0.0.0.0 --port=8000"
     }
   }
 }
