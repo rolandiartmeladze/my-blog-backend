@@ -30,3 +30,22 @@ To run this project locally, make sure the following tools are installed:
 - **Git** (for version control)
 
 ---
+
+## ⚙️ Installation Steps
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/rolandiartmeladze/my-blog-backend.git
+   cd my-blog-backend
+```
+
+2. **Install composer**
+    ```bash
+        composer install
+    ```
+
+3.  **Set .env local config**
+    ```bash
+    cp .env.example .env
+    
+    ```
