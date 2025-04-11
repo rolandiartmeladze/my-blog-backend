@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     && apt-get clean
 
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/freetype2 --with-jpeg-dir=/usr/include \
     && docker-php-ext-install gd zip pdo pdo_mysql mbstring
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
