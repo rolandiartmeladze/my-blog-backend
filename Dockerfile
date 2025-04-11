@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libxml2-dev \
     libicu-dev \
+    libonig-dev \
     && docker-php-ext-configure intl \
     && docker-php-ext-install pdo pdo_mysql mbstring exif bcmath ctype intl \
     && rm -rf /var/lib/apt/lists/*
