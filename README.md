@@ -38,11 +38,13 @@ To run this project locally, make sure the following tools are installed:
    git clone https://github.com/rolandiartmeladze/my-blog-backend.git
    cd my-blog-backend
     ```
+---
 
 2. **Install composer**
     ```bash
-        composer install
-    ```
+    composer install
+     ```
+---
 
 3.  **Set .env local config**
     ```bash
