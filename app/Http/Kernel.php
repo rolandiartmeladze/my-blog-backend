@@ -1,5 +1,5 @@
 <?php
-// app/Http/Kernel.php
+
 return [
     'api' => [
     \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
