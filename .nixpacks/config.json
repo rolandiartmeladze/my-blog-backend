@@ -1,12 +1,19 @@
 {
   "phases": {
     "setup": {
-      "nixPkgs": ["php", "phpPackages.composer", "nginx", "mysql"]
+      "nixPkgs": [
+        "php",
+        "phpPackages.composer",
+        "nginx",
+        "mysql"
+      ]
     },
     "install": {
       "cmds": [
+        "cp .env.example .env",
         "composer install --ignore-platform-reqs",
-        "php artisan key:generate"
+        "php artisan key:generate",
+        "php artisan migrate"
       ]
     },
     "start": {
@@ -14,4 +21,3 @@
     }
   }
 }
-
