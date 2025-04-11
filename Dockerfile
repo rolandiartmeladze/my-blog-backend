@@ -16,4 +16,4 @@ RUN apt-get update && apt-get install -y \
 
 EXPOSE 80
 
-CMD [php artisan serve --host=0.0.0.0 --port=3000]
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=3000
