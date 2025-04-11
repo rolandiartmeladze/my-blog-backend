@@ -76,13 +76,13 @@ To run this project locally, make sure the following tools are installed:
 
 📁 Folder Structure
 
-    -[] /app – Core application files (models, controllers)
+- /app – Core application files (models, controllers)
 
-    -[] /resources/views – Blade templates
+- /resources/views – Blade templates
 
-    -[] /routes/web.php – Web routes
+- /routes/web.php – Web routes
 
-    -[] /routes/api.php – API routes
+- /routes/api.php – API routes
 
-    -[] /database/migrations – Database migration files
+-S /database/migrations – Database migration files
 
