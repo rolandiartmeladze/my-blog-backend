@@ -15,3 +15,18 @@ This project is a simple blog and user management system developed using **Larav
 - 🧩 Secure API routes using Laravel Sanctum
 
 ---
+
+## 🚀 Getting Started
+
+To run this project locally, make sure the following tools are installed:
+
+### 🛠️ Requirements
+
+- **PHP** (>= 8.1)
+- **Composer**
+- **MySQL / MariaDB**
+- **Node.js & NPM** (for frontend assets, optional)
+- **Laravel CLI**
+- **Git** (for version control)
+
+---
