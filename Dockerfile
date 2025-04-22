@@ -1,29 +1,29 @@
+# Dockerfile
 FROM php:8.1-fpm
 
+# სისტემური პაკეტები
 RUN apt-get update && apt-get install -y \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    zip \
-    git \
-    nginx \
-    libzip-dev \
-    libxml2-dev \
-    libicu-dev \
-    curl \
+    libpng-dev libjpeg-dev libfreetype6-dev \
+    zip git unzip curl libzip-dev \
+    libxml2-dev libicu-dev \
     && apt-get clean
 
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/freetype2 --with-jpeg-dir=/usr/include \
-    && docker-php-ext-install gd zip pdo pdo_mysql mbstring
+# PHP Extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd zip pdo pdo_mysql mbstring intl
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Composer
+RUN curl -sS https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/local/bin/composer
 
-WORKDIR /var/www/html
+WORKDIR /var/www
 
 COPY . .
 
-RUN composer install --no-interaction --prefer-dist
+RUN composer install --no-interaction --prefer-dist \
+    && cp .env.example .env \
+    && php artisan key:generate
 
-EXPOSE 80
+EXPOSE 9000
 
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=3000
+CMD ["php-fpm"]
